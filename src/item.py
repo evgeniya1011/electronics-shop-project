@@ -55,5 +55,5 @@ class Item:
                 cls(row['name'], row['price'], row['quantity'])
 
     @staticmethod
-    def string_to_number(number):
+    def string_to_number(all):
         return len(Item.all)
