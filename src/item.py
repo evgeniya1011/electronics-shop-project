@@ -54,7 +54,6 @@ class Item:
         with open("../src/items.csv", encoding="1251") as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                name = row['name']
                 Item.all.append(cls(row['name'], row['price'], row['quantity']))
         return Item.all
 
