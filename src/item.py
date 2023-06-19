@@ -1,8 +1,6 @@
 import csv
 
 
-
-
 class Item:
     """
     Класс для представления товара в магазине.
@@ -51,18 +49,11 @@ class Item:
     @classmethod
     def instantiate_from_csv(cls):
         Item.all = []
-        with open("../src/items.csv", encoding="1251") as csvfile:
+        with open("../src/items.csv", encoding='cp1251') as csvfile:
             reader = csv.DictReader(csvfile)
             for row in reader:
-                Item.all.append(cls(row['name'], row['price'], row['quantity']))
-        return Item.all
-
+                cls(row['name'], row['price'], row['quantity'])
 
     @staticmethod
-    def string_to_number():
+    def string_to_number(number):
         return len(Item.all)
-
-
-#print(Item.instantiate_from_csv())
-#print(Item.string_to_number())
-
