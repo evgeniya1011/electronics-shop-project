@@ -1,3 +1,8 @@
+import csv
+
+
+
+
 class Item:
     """
     Класс для представления товара в магазине.
@@ -13,13 +18,14 @@ class Item:
         :param price: Цена за единицу товара.
         :param quantity: Количество товара в магазине.
         """
-        self.name = name
+        self.__name = name
         self.price = price
         self.quantity = quantity
+        Item.all.append(self)
 
     def calculate_total_price(self) -> float:
         """
-        Рассчитывает общую стоимость конкретного товара в мpoагазине.
+        Рассчитывает общую стоимость конкретного товара в магазине.
 
         :return: Общая стоимость товара.
         """
@@ -31,4 +37,33 @@ class Item:
         """
         self.price = float(self.price * self.pay_rate)
 
-        Item.all.append(Item(self.name, self.price, self.quantity))
+    @property
+    def name(self):
+        return self.__name
+
+    @name.setter
+    def name(self, value):
+        if len(value) < 11:
+            self.__name = value
+        else:
+            self.__name = value[:10]
+
+    @classmethod
+    def instantiate_from_csv(cls):
+        Item.all = []
+        with open("../src/items.csv", encoding="1251") as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                name = row['name']
+                Item.all.append(cls(row['name'], row['price'], row['quantity']))
+        return Item.all
+
+
+    @staticmethod
+    def string_to_number():
+        return len(Item.all)
+
+
+#print(Item.instantiate_from_csv())
+#print(Item.string_to_number())
+
