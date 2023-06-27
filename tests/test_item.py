@@ -32,6 +32,8 @@ def test_get_name(item_name):
 def test_set_name(item_name):
     item_name.name = "СуперСмартфон"
     assert item_name.name == "СуперСмарт"
+    item_name.name = "ХуавейНова"
+    assert item_name.name == "ХуавейНова"
 
 
 def test_instantiate_from_csv():
@@ -54,8 +56,9 @@ def test_str(item_name):
 def test_repr(item_name):
     assert repr(item_name) == "Item('Смартфон', 10000, 20)"
 
+
 def test_add(item_name):
     phone2 = Phone("iPhone 14", 100000, 10, 3)
     assert item_name + phone2 == 30
     assert item_name + item_name == 40
-
+    assert phone2 + 10 == Exception
