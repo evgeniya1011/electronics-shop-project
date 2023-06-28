@@ -30,6 +30,12 @@ def test_add(phone_name):
     assert phone_name + 10 == Exception
 
 
-def test_number_of_sim():
-    phone1 = Phone("Phone12", 70000, 12, 0)
-    assert phone1.number_of_sim == ValueError("Количество физических SIM-карт должно быть целым числом больше нуля")
+def test_number_of_sim_setter(phone_name):
+    phone_name.number_of_sim = 3
+    assert phone_name.number_of_sim == 3
+    phone_name.number_of_sim = 0
+    assert phone_name.number_of_sim == ValueError("Количество физических SIM-карт должно быть целым числом больше нуля")
+
+
+def test_number_of_sim_getter(phone_name):
+    assert phone_name.number_of_sim == 2
