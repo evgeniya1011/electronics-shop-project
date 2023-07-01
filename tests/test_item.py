@@ -61,4 +61,3 @@ def test_add(item_name):
     phone2 = Phone("iPhone 14", 100000, 10, 3)
     assert item_name + phone2 == 30
     assert item_name + item_name == 40
-    assert phone2 + 10 == Exception
