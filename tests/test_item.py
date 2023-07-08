@@ -2,6 +2,7 @@
 import pytest
 from src.item import Item
 from src.phone import Phone
+from src.instantiate import InstantiateCSVError
 
 
 @pytest.fixture()
@@ -42,6 +43,16 @@ def test_instantiate_from_csv():
     assert item_name1.name == "Смартфон"
     item_name2 = Item.all[1]
     assert item_name2.name == "Ноутбук"
+
+
+def test_instantiate_from_csv_inst_error():
+    with pytest.raises(InstantiateCSVError):
+        Item.instantiate_from_csv()
+
+
+def test_instantiate_from_csv_found_error():
+    with pytest.raises(FileNotFoundError):
+        Item.instantiate_from_csv()
 
 
 def test_string_to_number():
